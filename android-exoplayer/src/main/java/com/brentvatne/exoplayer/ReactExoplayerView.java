@@ -917,7 +917,7 @@ class ReactExoplayerView extends FrameLayout implements
 
     @Override
     public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
-        // Do nothing.
+        eventEmitter.bufferProgress(player.getBufferedPosition(), player.getTotalBufferedDuration());
     }
 
     @Override

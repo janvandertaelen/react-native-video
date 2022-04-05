@@ -30,7 +30,6 @@ class VideoEventEmitter {
     private static final String EVENT_LOAD = "onVideoLoad";
     private static final String EVENT_ERROR = "onVideoError";
     private static final String EVENT_PROGRESS = "onVideoProgress";
-    private static final String EVENT_BUFFER_PROGRESS = "onVideoBufferProgress";
     private static final String EVENT_BANDWIDTH = "onVideoBandwidthUpdate";
     private static final String EVENT_SEEK = "onVideoSeek";
     private static final String EVENT_END = "onVideoEnd";
@@ -69,8 +68,7 @@ class VideoEventEmitter {
             EVENT_AUDIO_BECOMING_NOISY,
             EVENT_AUDIO_FOCUS_CHANGE,
             EVENT_PLAYBACK_RATE_CHANGE,
-            EVENT_BANDWIDTH,
-            EVENT_BUFFER_PROGRESS
+            EVENT_BANDWIDTH
     };
 
     @Retention(RetentionPolicy.SOURCE)
@@ -94,8 +92,7 @@ class VideoEventEmitter {
             EVENT_AUDIO_BECOMING_NOISY,
             EVENT_AUDIO_FOCUS_CHANGE,
             EVENT_PLAYBACK_RATE_CHANGE,
-            EVENT_BANDWIDTH,
-            EVENT_BUFFER_PROGRESS
+            EVENT_BANDWIDTH
     })
     @interface VideoEvents {
     }
@@ -133,9 +130,6 @@ class VideoEventEmitter {
     private static final String EVENT_PROP_TIMED_METADATA = "metadata";
 
     private static final String EVENT_PROP_BITRATE = "bitrate";
-
-    private static final String EVENT_PROP_BUFFERED_POSITION = "bufferedPosition";
-    private static final String EVENT_PROP_TOTAL_BUFFERED_DURATION = "totalBufferedDuration";
 
 
     void setViewId(int viewId) {
@@ -186,13 +180,6 @@ class VideoEventEmitter {
         event.putDouble(EVENT_PROP_CURRENT_PLAYBACK_TIME, currentPlaybackTime);
         event.putDouble(EVENT_PROP_STREAMBITRATE, streamBitRate);
         receiveEvent(EVENT_PROGRESS, event);
-    }
-
-    void bufferProgress(long bufferedPosition, long totalBufferedDuration) {
-        WritableMap event = Arguments.createMap();
-        event.putDouble(EVENT_PROP_BUFFERED_POSITION, bufferedPosition / 1000D);
-        event.putDouble(EVENT_PROP_TOTAL_BUFFERED_DURATION, totalBufferedDuration/ 1000D);
-        receiveEvent(EVENT_BUFFER_PROGRESS, event);
     }
 
     void bandwidthReport(double bitRateEstimate, int height, int width, String id) {

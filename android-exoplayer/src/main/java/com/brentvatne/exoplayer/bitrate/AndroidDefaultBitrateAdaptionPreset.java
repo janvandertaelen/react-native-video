@@ -13,12 +13,12 @@ public class AndroidDefaultBitrateAdaptionPreset implements BitrateAdaptionPrese
 
     @Override
     public float bandwidthFraction() {
-        return AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION;
+        return 0.8f;
     }
 
     @Override
     public int bandwidthMeterMaxWeight() {
-        return DefaultBandwidthMeter.DEFAULT_SLIDING_WINDOW_MAX_WEIGHT; // 2000
+        return 3000;
     }
 
     @Override
@@ -33,21 +33,21 @@ public class AndroidDefaultBitrateAdaptionPreset implements BitrateAdaptionPrese
 
     @Override
     public int minDurationForQualityIncreaseMs() {
-        return AdaptiveTrackSelection.DEFAULT_MIN_DURATION_FOR_QUALITY_INCREASE_MS; // 10000
+        return 10000;
     }
 
     @Override
     public int maxInitialBitrate() {
-        return 800000;
+        return 1100000;
     }
 
     @Override
     public float bufferedFractionToLiveEdgeForQualityIncrease() {
-        return AdaptiveTrackSelection.DEFAULT_BUFFERED_FRACTION_TO_LIVE_EDGE_FOR_QUALITY_INCREASE;
+        return 0.85f;
     }
 
     @Override
     public int bufferForPlaybackMs() {
-        return DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_MS; // 2500
+        return 4000;
     }
 }

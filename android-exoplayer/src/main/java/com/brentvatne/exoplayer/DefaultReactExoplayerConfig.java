@@ -3,7 +3,7 @@ package com.brentvatne.exoplayer;
 import android.content.Context;
 
 import com.brentvatne.exoplayer.bitrate.BitrateAdaptionPreset;
-import com.brentvatne.exoplayer.bitrate.DefaultBitrateAdaptionPreset;
+import com.brentvatne.exoplayer.bitrate.TiMPPerformanceBitrateAdaptionPreset;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
 import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
@@ -15,7 +15,7 @@ public class DefaultReactExoplayerConfig implements ReactExoplayerConfig {
     private final DefaultBandwidthMeter bandwidthMeter;
 
     public DefaultReactExoplayerConfig(Context context) {
-        this.bitrateAdaptionPreset = new DefaultBitrateAdaptionPreset();
+        this.bitrateAdaptionPreset = new TiMPPerformanceBitrateAdaptionPreset();
         this.bandwidthMeter = new DefaultBandwidthMeter.Builder(context)
                 .setInitialBitrateEstimate(this.bitrateAdaptionPreset.maxInitialBitrate())
                 .setSlidingWindowMaxWeight(this.bitrateAdaptionPreset.bandwidthMeterMaxWeight())

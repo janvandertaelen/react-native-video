@@ -972,12 +972,13 @@ class ReactExoplayerView extends FrameLayout implements
         else if (e.type == ExoPlaybackException.TYPE_SOURCE) {
             errorString = getResources().getString(R.string.unrecognized_media_format);
         }
-        eventEmitter.error(errorString, ex);
+
         playerNeedsSource = true;
         if (isBehindLiveWindow(e)) {
             clearResumePosition();
             initializePlayer();
         } else {
+            eventEmitter.error(errorString, ex);
             updateResumePosition();
         }
     }
